@@ -34,11 +34,10 @@ namespace MyTransportApp
             this.SearchForConnectionTabPage = new System.Windows.Forms.TabPage();
             this.ConnectionSearchDataGridView = new System.Windows.Forms.DataGridView();
             this.TimeLabel = new System.Windows.Forms.Label();
-            this.TimeTextBox = new System.Windows.Forms.TextBox();
             this.FromLabel = new System.Windows.Forms.Label();
             this.ToLabel = new System.Windows.Forms.Label();
             this.DateLabel = new System.Windows.Forms.Label();
-            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.ToComboBox = new System.Windows.Forms.ComboBox();
             this.FromComboBox = new System.Windows.Forms.ComboBox();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@ namespace MyTransportApp
             this.DepartureTimeDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ToDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GateDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.TabControl.SuspendLayout();
             this.SearchForConnectionTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionSearchDataGridView)).BeginInit();
@@ -91,13 +91,13 @@ namespace MyTransportApp
             // 
             // SearchForConnectionTabPage
             // 
+            this.SearchForConnectionTabPage.Controls.Add(this.TimePicker);
             this.SearchForConnectionTabPage.Controls.Add(this.ConnectionSearchDataGridView);
             this.SearchForConnectionTabPage.Controls.Add(this.TimeLabel);
-            this.SearchForConnectionTabPage.Controls.Add(this.TimeTextBox);
             this.SearchForConnectionTabPage.Controls.Add(this.FromLabel);
             this.SearchForConnectionTabPage.Controls.Add(this.ToLabel);
             this.SearchForConnectionTabPage.Controls.Add(this.DateLabel);
-            this.SearchForConnectionTabPage.Controls.Add(this.DateTimePicker);
+            this.SearchForConnectionTabPage.Controls.Add(this.DatePicker);
             this.SearchForConnectionTabPage.Controls.Add(this.ToComboBox);
             this.SearchForConnectionTabPage.Controls.Add(this.FromComboBox);
             this.SearchForConnectionTabPage.Controls.Add(this.SearchButton);
@@ -132,21 +132,11 @@ namespace MyTransportApp
             // 
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.TimeLabel.Location = new System.Drawing.Point(312, 81);
+            this.TimeLabel.Location = new System.Drawing.Point(244, 80);
             this.TimeLabel.Name = "TimeLabel";
             this.TimeLabel.Size = new System.Drawing.Size(40, 20);
             this.TimeLabel.TabIndex = 2;
             this.TimeLabel.Text = "Zeit:";
-            // 
-            // TimeTextBox
-            // 
-            this.TimeTextBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.TimeTextBox.Location = new System.Drawing.Point(358, 77);
-            this.TimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TimeTextBox.Name = "TimeTextBox";
-            this.TimeTextBox.Size = new System.Drawing.Size(95, 25);
-            this.TimeTextBox.TabIndex = 3;
-            this.TimeTextBox.Text = "HH:ss";
             // 
             // FromLabel
             // 
@@ -170,23 +160,25 @@ namespace MyTransportApp
             // 
             this.DateLabel.AutoSize = true;
             this.DateLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.DateLabel.Location = new System.Drawing.Point(15, 81);
+            this.DateLabel.Location = new System.Drawing.Point(8, 80);
             this.DateLabel.Name = "DateLabel";
             this.DateLabel.Size = new System.Drawing.Size(61, 20);
             this.DateLabel.TabIndex = 1;
             this.DateLabel.Text = "Datum:";
             // 
-            // DateTimePicker
+            // DatePicker
             // 
-            this.DateTimePicker.CalendarForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.DateTimePicker.CalendarMonthBackground = System.Drawing.SystemColors.ControlDarkDark;
-            this.DateTimePicker.CalendarTitleBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.DateTimePicker.CalendarTitleForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.DateTimePicker.Location = new System.Drawing.Point(75, 77);
-            this.DateTimePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DateTimePicker.Name = "DateTimePicker";
-            this.DateTimePicker.Size = new System.Drawing.Size(224, 25);
-            this.DateTimePicker.TabIndex = 0;
+            this.DatePicker.CalendarForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DatePicker.CalendarMonthBackground = System.Drawing.SystemColors.ControlDarkDark;
+            this.DatePicker.CalendarTitleBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DatePicker.CalendarTitleForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DatePicker.CustomFormat = "";
+            this.DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DatePicker.Location = new System.Drawing.Point(75, 77);
+            this.DatePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DatePicker.Name = "DatePicker";
+            this.DatePicker.Size = new System.Drawing.Size(139, 25);
+            this.DatePicker.TabIndex = 0;
             // 
             // ToComboBox
             // 
@@ -347,6 +339,17 @@ namespace MyTransportApp
             this.GateDepartureTableColumn.Name = "GateDepartureTableColumn";
             this.GateDepartureTableColumn.Width = 150;
             // 
+            // TimePicker
+            // 
+            this.TimePicker.CustomFormat = "HH:mm";
+            this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.TimePicker.Location = new System.Drawing.Point(290, 77);
+            this.TimePicker.Name = "TimePicker";
+            this.TimePicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TimePicker.ShowUpDown = true;
+            this.TimePicker.Size = new System.Drawing.Size(79, 25);
+            this.TimePicker.TabIndex = 6;
+            // 
             // MyTransportAppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -385,9 +388,8 @@ namespace MyTransportApp
         private System.Windows.Forms.ComboBox ToComboBox;
         private System.Windows.Forms.ComboBox FromComboBox;
         private System.Windows.Forms.Label TimeLabel;
-        private System.Windows.Forms.TextBox TimeTextBox;
         private System.Windows.Forms.Label DateLabel;
-        private System.Windows.Forms.DateTimePicker DateTimePicker;
+        private System.Windows.Forms.DateTimePicker DatePicker;
         private System.Windows.Forms.DataGridView ConnectionSearchDataGridView;
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.DataGridView DepartureTableDataGridView;
@@ -401,6 +403,7 @@ namespace MyTransportApp
         private System.Windows.Forms.DataGridViewTextBoxColumn DepartureTimeDepartureTableColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ToDepartureTableColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GateDepartureTableColumn;
+        private System.Windows.Forms.DateTimePicker TimePicker;
     }
 }
 

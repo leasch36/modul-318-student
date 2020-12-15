@@ -20,6 +20,8 @@ namespace MyTransportApp
         public MyTransportAppForm()
         {
             InitializeComponent();
+            DatePicker.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            TimePicker.Text = DateTime.Now.ToString("HH:mm");
         }
 
         private void Form1_Load(object sender, EventArgs e)
