@@ -16,7 +16,6 @@ namespace MyTransportApp
     {
         ITransport transport = new Transport();
         //Station station = new Station();
-       // Connection connection = new Connection();
 
         public MyTransportAppForm()
         {
@@ -32,35 +31,56 @@ namespace MyTransportApp
 
         private void SearchButtonClick(object sender, EventArgs e)
         {
-            //Falls Die Pflichfeldet Von+Nach leer sind, Gibt Fehlermeldung
+            //Rows leeren
+            this.ConnectionSearchDataGridView.Rows.Clear();
+
+            //Falls die Pflichfelder Von+Nach leer sind, gibt es eine Fehlermeldung
             if (FromComboBox.Text != "" && ToComboBox.Text != "")
             {
-                //Alle Verbindungen wo Station mit User-Stationeingabe übereinstimmt, in Objekt speichern
-                Connections connection = transport.GetConnections(FromComboBox.Text, ToComboBox.Text);
+                try
+                {
+                    //Alle Verbindungen wo Station mit User-Stationeingabe übereinstimmt, in Objekt speichern
+                    var connections = transport.GetConnections(FromComboBox.Text, ToComboBox.Text);
 
-                //Diese Verbindungen wo jetzt ok sind, muss ich einzeln in eine Variable speichern, 
-                //damit ich diese in die AusgabeTabelle einfügen kann
-                foreach (var singleCon in connection.ConnectionList)
-                { //List<Connection> ist eine Liste mit dem Datentyp Connection
-                    this.ConnectionSearchDataGridView.Rows.Add(singleCon.From.Departure.ToString().Substring(0,10), singleCon.From.Departure.ToString().Substring(11,5), singleCon.From.Station.Name, singleCon.To.Station.Name, singleCon.To.Arrival.ToString().Substring(11, 5), singleCon.Duration.Substring(3, 5), singleCon.From.Platform);
-
+                    //Nur wenn Verbindungen gefunden wurden
+                    if (connections.ConnectionList.Count != 0)
+                    {
+                        //Diese Verbindungen wo jetzt ok sind, muss ich einzeln in eine Variable speichern, 
+                        //damit ich diese in die AusgabeTabelle einfügen kann
+                        foreach (Connection singleCon in connections.ConnectionList)
+                        {
+                            //List<Connection> ist eine Liste mit dem Datentyp Connection
+                            this.ConnectionSearchDataGridView.Rows.Add(singleCon.From.Departure.ToString().Substring(0, 10), singleCon.From.Departure.ToString().Substring(11, 5), singleCon.From.Station.Name, singleCon.To.Station.Name, singleCon.To.Arrival.ToString().Substring(11, 5), singleCon.Duration.Substring(3, 5), singleCon.From.Platform);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Keine Verbindung gefunden. Bitte überprüfen Sie Ihre Eingaben.");
+                    }
+                }
+                catch 
+                {
+                    MessageBox.Show("Keine Verbindung gefunden. Bitte überprüfen Sie Ihre Eingaben.");
                 }
             }
-            else {
-                MessageBox.Show("Sie haben einen ungueltigen Wert eingegeben.");
+            else
+            {
+                MessageBox.Show("Bitte geben Sie eine Start- UND Endstation ein.");
             }
         }
 
         private void SearchDepartureTabelClick(object sender, EventArgs e)
-        {
-            /*
+        {/*
+            //Rows leeren
+            this.DepartureTableDataGridView.Rows.Clear();
+            
             if (DepartureTabelComboBox.Text != "")
             {
-                Connections connection = transport.GetStationBoard(DepartureTabelComboBox.Text);
-
-                foreach (var c in connection.ConnectionList)
+                StationBoardRoot connection = transport.GetStationBoard(DepartureTabelComboBox.Text, "");
+                
+                foreach (var singleCon in connection.Entries) //Entries = List<StationBoard>
                 { //List<Connection> ist eine Liste mit dem Datentyp Connection
-                    this.ConnectionSearchDataGridView.Rows.Add(c.From.Departure, c.To.Station.Name, c.From.Platform);
+                    this.ConnectionSearchDataGridView.Rows.Add(singleCon.Stop.Departure, singleCon.To, singleCon.Category);
 
                 }
             }
@@ -68,6 +88,88 @@ namespace MyTransportApp
             {
                 MessageBox.Show("Sie haben einen ungueltigen Wert eingegeben.");
             }*/
+        }
+
+        private void ChangeStationFieldsButtonClick(object sender, EventArgs e)
+        {
+            var fromStation = FromComboBox.Text;
+            var toStation = ToComboBox.Text;
+
+            FromComboBox.Text = toStation;
+            ToComboBox.Text = fromStation;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //https://stackoverflow.com/questions/809538/how-to-send-email-using-default-email-client
+        private void MailSendenButtonClick(object sender, EventArgs e)
+        {
+            try
+            {   
+                //neue List erstellen
+                var dataGridViewList = new List<string>();
+
+                //Jede Verbindung(1 row) welche ausgewählt wurde einzeln weitergeben
+                foreach (DataGridViewRow row in ConnectionSearchDataGridView.SelectedRows)
+                {
+                    //Jede Zelle einer Row abrufen und daraus ein String bilden
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        dataGridViewList.Add(cell.Value.ToString());
+                    }
+                }
+                //Wenn überhaupt eine Verbindung ausgewählt wurde-> Mailtext bilden indem List zusammenbaue
+                if (dataGridViewList != null) System.Diagnostics.Process.Start("mailto:" + "?subject=Verbindung" + "&body=Datum: " + dataGridViewList[0] + ", Abfahrt: " + dataGridViewList[1] + ", Uhr " + ", Von: " + dataGridViewList[2] + ", Nach: " + dataGridViewList[3] + ", Ankunft: " + dataGridViewList[4] + ", Dauer: " + dataGridViewList[5] + ", Platform: " + dataGridViewList[6]);
+            }
+            catch
+            {
+                MessageBox.Show("Sie haben keine Verbindung auswaehlt.\n Drücken Sie in die leere Zelle links der gewünschten Verbindung.");
+            }
         }
     }
 }

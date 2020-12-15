@@ -27,6 +27,7 @@
 
         public StationBoardRoot GetStationBoard(string station, string id)
         {
+
             if (string.IsNullOrEmpty(station))
             {
                 throw new ArgumentNullException(nameof(station));
@@ -39,6 +40,7 @@
 
             var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
             return HttpClient.GetObject(uri, JsonConvert.DeserializeObject<StationBoardRoot>);
+
         }
 
         public Connections GetConnections(string fromStation, string toStation)
