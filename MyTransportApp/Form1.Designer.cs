@@ -32,36 +32,47 @@ namespace MyTransportApp
             this.label1 = new System.Windows.Forms.Label();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.SearchForConnectionTabPage = new System.Windows.Forms.TabPage();
+            this.FromLabel = new System.Windows.Forms.Label();
+            this.ToLabel = new System.Windows.Forms.Label();
+            this.ToComboBox = new System.Windows.Forms.ComboBox();
+            this.FromComboBox = new System.Windows.Forms.ComboBox();
+            this.SearchButton = new System.Windows.Forms.Button();
             this.DepartureBoardTabPage = new System.Windows.Forms.TabPage();
+            this.SearchDepartureTabelLabel = new System.Windows.Forms.Button();
+            this.DepartureTabelComboBox = new System.Windows.Forms.ComboBox();
+            this.FromDepartureTabelLabel = new System.Windows.Forms.Label();
             this.MapTabPage = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DateLabel = new System.Windows.Forms.Label();
+            this.TimeLabel = new System.Windows.Forms.Label();
+            this.TimeTextBox = new System.Windows.Forms.TextBox();
+            this.ConnectionSearchDataGridView = new System.Windows.Forms.DataGridView();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.DateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepartureTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepartureStationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArrivalStationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArrivalTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DepartureTableDataGridView = new System.Windows.Forms.DataGridView();
+            this.DepartureTimeDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GateDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl.SuspendLayout();
             this.SearchForConnectionTabPage.SuspendLayout();
             this.DepartureBoardTabPage.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConnectionSearchDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DepartureTableDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(14, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 29);
+            this.label1.Size = new System.Drawing.Size(146, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "ÖV-Suche";
             // 
@@ -71,191 +82,279 @@ namespace MyTransportApp
             this.TabControl.Controls.Add(this.DepartureBoardTabPage);
             this.TabControl.Controls.Add(this.MapTabPage);
             this.TabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TabControl.Location = new System.Drawing.Point(12, 55);
+            this.TabControl.Location = new System.Drawing.Point(12, 56);
+            this.TabControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(661, 500);
+            this.TabControl.Size = new System.Drawing.Size(879, 513);
             this.TabControl.TabIndex = 2;
             // 
             // SearchForConnectionTabPage
             // 
-            this.SearchForConnectionTabPage.Controls.Add(this.label2);
-            this.SearchForConnectionTabPage.Controls.Add(this.label3);
-            this.SearchForConnectionTabPage.Controls.Add(this.listView1);
-            this.SearchForConnectionTabPage.Controls.Add(this.groupBox2);
-            this.SearchForConnectionTabPage.Controls.Add(this.comboBox1);
-            this.SearchForConnectionTabPage.Controls.Add(this.comboBox2);
-            this.SearchForConnectionTabPage.Controls.Add(this.button1);
-            this.SearchForConnectionTabPage.Location = new System.Drawing.Point(4, 25);
+            this.SearchForConnectionTabPage.Controls.Add(this.ConnectionSearchDataGridView);
+            this.SearchForConnectionTabPage.Controls.Add(this.TimeLabel);
+            this.SearchForConnectionTabPage.Controls.Add(this.TimeTextBox);
+            this.SearchForConnectionTabPage.Controls.Add(this.FromLabel);
+            this.SearchForConnectionTabPage.Controls.Add(this.ToLabel);
+            this.SearchForConnectionTabPage.Controls.Add(this.DateLabel);
+            this.SearchForConnectionTabPage.Controls.Add(this.DateTimePicker);
+            this.SearchForConnectionTabPage.Controls.Add(this.ToComboBox);
+            this.SearchForConnectionTabPage.Controls.Add(this.FromComboBox);
+            this.SearchForConnectionTabPage.Controls.Add(this.SearchButton);
+            this.SearchForConnectionTabPage.Location = new System.Drawing.Point(4, 29);
+            this.SearchForConnectionTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SearchForConnectionTabPage.Name = "SearchForConnectionTabPage";
-            this.SearchForConnectionTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchForConnectionTabPage.Size = new System.Drawing.Size(653, 471);
+            this.SearchForConnectionTabPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SearchForConnectionTabPage.Size = new System.Drawing.Size(871, 480);
             this.SearchForConnectionTabPage.TabIndex = 0;
             this.SearchForConnectionTabPage.Text = "Verbindungssuche";
             this.SearchForConnectionTabPage.UseVisualStyleBackColor = true;
             // 
+            // FromLabel
+            // 
+            this.FromLabel.AutoSize = true;
+            this.FromLabel.Location = new System.Drawing.Point(15, 36);
+            this.FromLabel.Name = "FromLabel";
+            this.FromLabel.Size = new System.Drawing.Size(42, 20);
+            this.FromLabel.TabIndex = 3;
+            this.FromLabel.Text = "Von:";
+            // 
+            // ToLabel
+            // 
+            this.ToLabel.AutoSize = true;
+            this.ToLabel.Location = new System.Drawing.Point(234, 36);
+            this.ToLabel.Name = "ToLabel";
+            this.ToLabel.Size = new System.Drawing.Size(50, 20);
+            this.ToLabel.TabIndex = 4;
+            this.ToLabel.Text = "Nach:";
+            // 
+            // ToComboBox
+            // 
+            this.ToComboBox.FormattingEnabled = true;
+            this.ToComboBox.Location = new System.Drawing.Point(290, 30);
+            this.ToComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ToComboBox.Name = "ToComboBox";
+            this.ToComboBox.Size = new System.Drawing.Size(136, 28);
+            this.ToComboBox.TabIndex = 0;
+            // 
+            // FromComboBox
+            // 
+            this.FromComboBox.FormattingEnabled = true;
+            this.FromComboBox.Location = new System.Drawing.Point(74, 30);
+            this.FromComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.FromComboBox.Name = "FromComboBox";
+            this.FromComboBox.Size = new System.Drawing.Size(154, 28);
+            this.FromComboBox.TabIndex = 1;
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.Location = new System.Drawing.Point(463, 30);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(84, 29);
+            this.SearchButton.TabIndex = 2;
+            this.SearchButton.Text = "Suchen";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            // 
             // DepartureBoardTabPage
             // 
-            this.DepartureBoardTabPage.Controls.Add(this.listView2);
-            this.DepartureBoardTabPage.Controls.Add(this.button2);
-            this.DepartureBoardTabPage.Controls.Add(this.comboBox3);
-            this.DepartureBoardTabPage.Controls.Add(this.label6);
-            this.DepartureBoardTabPage.Location = new System.Drawing.Point(4, 25);
+            this.DepartureBoardTabPage.Controls.Add(this.DepartureTableDataGridView);
+            this.DepartureBoardTabPage.Controls.Add(this.SearchDepartureTabelLabel);
+            this.DepartureBoardTabPage.Controls.Add(this.DepartureTabelComboBox);
+            this.DepartureBoardTabPage.Controls.Add(this.FromDepartureTabelLabel);
+            this.DepartureBoardTabPage.Location = new System.Drawing.Point(4, 29);
+            this.DepartureBoardTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DepartureBoardTabPage.Name = "DepartureBoardTabPage";
-            this.DepartureBoardTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.DepartureBoardTabPage.Size = new System.Drawing.Size(653, 471);
+            this.DepartureBoardTabPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DepartureBoardTabPage.Size = new System.Drawing.Size(871, 480);
             this.DepartureBoardTabPage.TabIndex = 1;
             this.DepartureBoardTabPage.Text = "Abfahrtstafel";
             this.DepartureBoardTabPage.UseVisualStyleBackColor = true;
             // 
+            // SearchDepartureTabelLabel
+            // 
+            this.SearchDepartureTabelLabel.Location = new System.Drawing.Point(247, 37);
+            this.SearchDepartureTabelLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SearchDepartureTabelLabel.Name = "SearchDepartureTabelLabel";
+            this.SearchDepartureTabelLabel.Size = new System.Drawing.Size(84, 29);
+            this.SearchDepartureTabelLabel.TabIndex = 2;
+            this.SearchDepartureTabelLabel.Text = "Suchen";
+            this.SearchDepartureTabelLabel.UseVisualStyleBackColor = true;
+            // 
+            // DepartureTabelComboBox
+            // 
+            this.DepartureTabelComboBox.FormattingEnabled = true;
+            this.DepartureTabelComboBox.Location = new System.Drawing.Point(65, 37);
+            this.DepartureTabelComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DepartureTabelComboBox.Name = "DepartureTabelComboBox";
+            this.DepartureTabelComboBox.Size = new System.Drawing.Size(158, 28);
+            this.DepartureTabelComboBox.TabIndex = 1;
+            // 
+            // FromDepartureTabelLabel
+            // 
+            this.FromDepartureTabelLabel.AutoSize = true;
+            this.FromDepartureTabelLabel.Location = new System.Drawing.Point(17, 40);
+            this.FromDepartureTabelLabel.Name = "FromDepartureTabelLabel";
+            this.FromDepartureTabelLabel.Size = new System.Drawing.Size(42, 20);
+            this.FromDepartureTabelLabel.TabIndex = 0;
+            this.FromDepartureTabelLabel.Text = "Von:";
+            // 
             // MapTabPage
             // 
-            this.MapTabPage.Location = new System.Drawing.Point(4, 25);
+            this.MapTabPage.Location = new System.Drawing.Point(4, 29);
+            this.MapTabPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MapTabPage.Name = "MapTabPage";
-            this.MapTabPage.Size = new System.Drawing.Size(653, 471);
+            this.MapTabPage.Size = new System.Drawing.Size(871, 480);
             this.MapTabPage.TabIndex = 2;
             this.MapTabPage.Text = "Karte";
             this.MapTabPage.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // DateTimePicker
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 73);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(417, 57);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.DateTimePicker.CalendarForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DateTimePicker.CalendarMonthBackground = System.Drawing.SystemColors.ControlDarkDark;
+            this.DateTimePicker.CalendarTitleBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DateTimePicker.CalendarTitleForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DateTimePicker.Location = new System.Drawing.Point(75, 77);
+            this.DateTimePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.DateTimePicker.Name = "DateTimePicker";
+            this.DateTimePicker.Size = new System.Drawing.Size(224, 25);
+            this.DateTimePicker.TabIndex = 0;
             // 
-            // listView1
+            // DateLabel
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 147);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(653, 324);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.DateLabel.AutoSize = true;
+            this.DateLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DateLabel.Location = new System.Drawing.Point(15, 81);
+            this.DateLabel.Name = "DateLabel";
+            this.DateLabel.Size = new System.Drawing.Size(61, 20);
+            this.DateLabel.TabIndex = 1;
+            this.DateLabel.Text = "Datum:";
             // 
-            // button1
+            // TimeLabel
             // 
-            this.button1.Location = new System.Drawing.Point(412, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.TimeLabel.AutoSize = true;
+            this.TimeLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.TimeLabel.Location = new System.Drawing.Point(312, 81);
+            this.TimeLabel.Name = "TimeLabel";
+            this.TimeLabel.Size = new System.Drawing.Size(40, 20);
+            this.TimeLabel.TabIndex = 2;
+            this.TimeLabel.Text = "Zeit:";
             // 
-            // dateTimePicker1
+            // TimeTextBox
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(59, 22);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 0;
+            this.TimeTextBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.TimeTextBox.Location = new System.Drawing.Point(358, 77);
+            this.TimeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.TimeTextBox.Name = "TimeTextBox";
+            this.TimeTextBox.Size = new System.Drawing.Size(95, 25);
+            this.TimeTextBox.TabIndex = 3;
+            this.TimeTextBox.Text = "HH:ss";
             // 
-            // label4
+            // ConnectionSearchDataGridView
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "label4";
+            this.ConnectionSearchDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ConnectionSearchDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DateColumn,
+            this.DepartureTimeColumn,
+            this.DepartureStationColumn,
+            this.ArrivalStationColumn,
+            this.ArrivalTimeColumn,
+            this.DurationColumn,
+            this.GateColumn});
+            this.ConnectionSearchDataGridView.Location = new System.Drawing.Point(3, 122);
+            this.ConnectionSearchDataGridView.Name = "ConnectionSearchDataGridView";
+            this.ConnectionSearchDataGridView.RowHeadersWidth = 62;
+            this.ConnectionSearchDataGridView.RowTemplate.Height = 28;
+            this.ConnectionSearchDataGridView.Size = new System.Drawing.Size(863, 354);
+            this.ConnectionSearchDataGridView.TabIndex = 5;
             // 
-            // label5
+            // DateColumn
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(265, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "label5";
+            this.DateColumn.HeaderText = "Datum";
+            this.DateColumn.MinimumWidth = 8;
+            this.DateColumn.Name = "DateColumn";
             // 
-            // textBox1
+            // DepartureTimeColumn
             // 
-            this.textBox1.Location = new System.Drawing.Point(317, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(85, 22);
-            this.textBox1.TabIndex = 3;
+            this.DepartureTimeColumn.HeaderText = "Abfahrtszeit";
+            this.DepartureTimeColumn.MinimumWidth = 8;
+            this.DepartureTimeColumn.Name = "DepartureTimeColumn";
             // 
-            // label6
+            // DepartureStationColumn
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 17);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "label6";
+            this.DepartureStationColumn.HeaderText = "Von";
+            this.DepartureStationColumn.MinimumWidth = 8;
+            this.DepartureStationColumn.Name = "DepartureStationColumn";
+            this.DepartureStationColumn.Width = 150;
             // 
-            // comboBox3
+            // ArrivalStationColumn
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(26, 40);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 24);
-            this.comboBox3.TabIndex = 1;
+            this.ArrivalStationColumn.HeaderText = "Nach";
+            this.ArrivalStationColumn.MinimumWidth = 8;
+            this.ArrivalStationColumn.Name = "ArrivalStationColumn";
+            this.ArrivalStationColumn.Width = 150;
             // 
-            // button2
+            // ArrivalTimeColumn
             // 
-            this.button2.Location = new System.Drawing.Point(172, 40);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ArrivalTimeColumn.HeaderText = "Ankunftszeit";
+            this.ArrivalTimeColumn.MinimumWidth = 8;
+            this.ArrivalTimeColumn.Name = "ArrivalTimeColumn";
             // 
-            // comboBox1
+            // DurationColumn
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(258, 26);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 0;
+            this.DurationColumn.HeaderText = "Dauer";
+            this.DurationColumn.MinimumWidth = 8;
+            this.DurationColumn.Name = "DurationColumn";
             // 
-            // comboBox2
+            // GateColumn
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(65, 29);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
-            this.comboBox2.TabIndex = 1;
+            this.GateColumn.HeaderText = "Gleis/BusNr";
+            this.GateColumn.MinimumWidth = 8;
+            this.GateColumn.Name = "GateColumn";
             // 
-            // label2
+            // DepartureTableDataGridView
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "label2";
+            this.DepartureTableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DepartureTableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DepartureTimeDepartureTableColumn,
+            this.ToDepartureTableColumn,
+            this.GateDepartureTableColumn});
+            this.DepartureTableDataGridView.Location = new System.Drawing.Point(6, 82);
+            this.DepartureTableDataGridView.Name = "DepartureTableDataGridView";
+            this.DepartureTableDataGridView.RowHeadersWidth = 62;
+            this.DepartureTableDataGridView.RowTemplate.Height = 28;
+            this.DepartureTableDataGridView.Size = new System.Drawing.Size(859, 391);
+            this.DepartureTableDataGridView.TabIndex = 3;
             // 
-            // label3
+            // DepartureTimeDepartureTableColumn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "label3";
+            this.DepartureTimeDepartureTableColumn.HeaderText = "Abfahrtszeit";
+            this.DepartureTimeDepartureTableColumn.MinimumWidth = 8;
+            this.DepartureTimeDepartureTableColumn.Name = "DepartureTimeDepartureTableColumn";
             // 
-            // listView2
+            // ToDepartureTableColumn
             // 
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(6, 86);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(641, 358);
-            this.listView2.TabIndex = 3;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.ToDepartureTableColumn.HeaderText = "Nach";
+            this.ToDepartureTableColumn.MinimumWidth = 8;
+            this.ToDepartureTableColumn.Name = "ToDepartureTableColumn";
+            this.ToDepartureTableColumn.Width = 580;
+            // 
+            // GateDepartureTableColumn
+            // 
+            this.GateDepartureTableColumn.HeaderText = "Gleis/BusNr";
+            this.GateDepartureTableColumn.MinimumWidth = 8;
+            this.GateDepartureTableColumn.Name = "GateDepartureTableColumn";
+            this.GateDepartureTableColumn.Width = 150;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 564);
+            this.ClientSize = new System.Drawing.Size(899, 580);
             this.Controls.Add(this.TabControl);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -264,8 +363,8 @@ namespace MyTransportApp
             this.SearchForConnectionTabPage.PerformLayout();
             this.DepartureBoardTabPage.ResumeLayout(false);
             this.DepartureBoardTabPage.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ConnectionSearchDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DepartureTableDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,23 +375,33 @@ namespace MyTransportApp
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl TabControl;
         private System.Windows.Forms.TabPage SearchForConnectionTabPage;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.TabPage DepartureBoardTabPage;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox DepartureTabelComboBox;
+        private System.Windows.Forms.Label FromDepartureTabelLabel;
         private System.Windows.Forms.TabPage MapTabPage;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.Button SearchDepartureTabelLabel;
+        private System.Windows.Forms.Label FromLabel;
+        private System.Windows.Forms.Label ToLabel;
+        private System.Windows.Forms.ComboBox ToComboBox;
+        private System.Windows.Forms.ComboBox FromComboBox;
+        private System.Windows.Forms.Label TimeLabel;
+        private System.Windows.Forms.TextBox TimeTextBox;
+        private System.Windows.Forms.Label DateLabel;
+        private System.Windows.Forms.DateTimePicker DateTimePicker;
+        private System.Windows.Forms.DataGridView ConnectionSearchDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DepartureTimeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DepartureStationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ArrivalStationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ArrivalTimeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GateColumn;
+        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.DataGridView DepartureTableDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DepartureTimeDepartureTableColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ToDepartureTableColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GateDepartureTableColumn;
     }
 }
 
