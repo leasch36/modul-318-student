@@ -40,9 +40,9 @@ namespace MyTransportApp
 
                 //Diese Verbindungen wo jetzt ok sind, muss ich einzeln in eine Variable speichern, 
                 //damit ich diese in die AusgabeTabelle einfügen kann
-                foreach (var c in connection.ConnectionList)
+                foreach (var singleCon in connection.ConnectionList)
                 { //List<Connection> ist eine Liste mit dem Datentyp Connection
-                    this.ConnectionSearchDataGridView.Rows.Add(c.From.Departure, c.From.Departure, c.From.Station.Name, c.To.Station.Name, c.To.Arrival, c.Duration, c.From.Platform);
+                    this.ConnectionSearchDataGridView.Rows.Add(singleCon.From.Departure.ToString().Substring(0,10), singleCon.From.Departure.ToString().Substring(11,5), singleCon.From.Station.Name, singleCon.To.Station.Name, singleCon.To.Arrival.ToString().Substring(11, 5), singleCon.Duration.Substring(3, 5), singleCon.From.Platform);
 
                 }
             }
