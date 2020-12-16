@@ -31,13 +31,16 @@
             Assert.IsNotNull(stationBoard);
         }
 
+        /*
         [TestMethod]
         public void Connections()
         {
             testee = new Transport();
-            var connections = this.testee.GetConnections("Sursee", "Luzern");
+            DateTime time = DateTime.Now;
+            DateTime date = 
+            var connections = this.testee.GetConnections("Sursee", "Luzern", date , time);
 
             Assert.IsNotNull(connections);
-        }
+        }*/
     }
 }

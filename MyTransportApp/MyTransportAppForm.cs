@@ -40,7 +40,7 @@ namespace MyTransportApp
                 try
                 {
                     //Alle Verbindungen wo Station mit User-Stationeingabe übereinstimmt, in Objekt speichern
-                    var connections = transport.GetConnections(FromComboBox.Text, ToComboBox.Text);
+                    var connections = transport.GetConnections(FromComboBox.Text, ToComboBox.Text, DatePicker.Value, TimePicker.Value);
 
                     //Nur wenn Verbindungen gefunden wurden
                     if (connections.ConnectionList.Count != 0)
