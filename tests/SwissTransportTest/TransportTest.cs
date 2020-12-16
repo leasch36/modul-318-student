@@ -1,7 +1,7 @@
 ﻿namespace SwissTransport
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    using System;
     using SwissTransport.Core;
 
     /// <summary>
@@ -25,7 +25,8 @@
         public void StationBoard()
         {
             testee = new Transport();
-            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
+            DateTime time = DateTime.Now;
+            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007", time, 6);
 
             Assert.IsNotNull(stationBoard);
         }

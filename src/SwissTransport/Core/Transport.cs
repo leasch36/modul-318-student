@@ -25,7 +25,7 @@
             return HttpClient.GetObject(uri, JsonConvert.DeserializeObject<Stations>);
         }
 
-        public StationBoardRoot GetStationBoard(string station, string id)
+        public StationBoardRoot GetStationBoard(string station, string id, DateTime time, int ende)
         {
 
             if (string.IsNullOrEmpty(station))
@@ -38,7 +38,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
+            var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}&time={time}&limit={ende}");
             return HttpClient.GetObject(uri, JsonConvert.DeserializeObject<StationBoardRoot>);
 
         }

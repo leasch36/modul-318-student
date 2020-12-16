@@ -70,24 +70,29 @@ namespace MyTransportApp
         }
 
         private void SearchDepartureTabelClick(object sender, EventArgs e)
-        {/*
+        {
             //Rows leeren
             this.DepartureTableDataGridView.Rows.Clear();
-            
+
             if (DepartureTabelComboBox.Text != "")
             {
-                StationBoardRoot connection = transport.GetStationBoard(DepartureTabelComboBox.Text, "");
-                
+                //folgendes hätte die ID der Station ergeben, brauche ich aber gar nicht
+                //var stations = transport.GetStations(DepartureTabelComboBox.Text);
+                //string stationList0 = Convert.ToString(stations.StationList[0]);
+               // string stationID = stationList;
+                DateTime time = DateTime.Now;
+                StationBoardRoot connection = transport.GetStationBoard(DepartureTabelComboBox.Text, "0", time, 6);
+
                 foreach (var singleCon in connection.Entries) //Entries = List<StationBoard>
                 { //List<Connection> ist eine Liste mit dem Datentyp Connection
-                    this.ConnectionSearchDataGridView.Rows.Add(singleCon.Stop.Departure, singleCon.To, singleCon.Category);
+                    this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString(), singleCon.To.ToString(), singleCon.Category.ToString());
 
-                }
+                } 
             }
             else
             {
                 MessageBox.Show("Sie haben einen ungueltigen Wert eingegeben.");
-            }*/
+            } 
         }
 
         private void ChangeStationFieldsButtonClick(object sender, EventArgs e)
