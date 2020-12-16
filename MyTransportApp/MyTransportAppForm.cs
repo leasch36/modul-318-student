@@ -85,7 +85,7 @@ namespace MyTransportApp
 
                 foreach (var singleCon in connection.Entries) //Entries = List<StationBoard>
                 { //List<Connection> ist eine Liste mit dem Datentyp Connection
-                    this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString(), singleCon.To.ToString(), singleCon.Category.ToString());
+                    this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString().Substring(11,5), singleCon.To.ToString(), singleCon.Category.ToString());
 
                 } 
             }

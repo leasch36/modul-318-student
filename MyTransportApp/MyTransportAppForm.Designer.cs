@@ -55,15 +55,15 @@ namespace MyTransportApp
             this.SearchButton = new System.Windows.Forms.Button();
             this.DepartureBoardTabPage = new System.Windows.Forms.TabPage();
             this.DepartureTableDataGridView = new System.Windows.Forms.DataGridView();
-            this.DepartureTimeDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GateDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BlankColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchDepartureTabelLabel = new System.Windows.Forms.Button();
             this.DepartureTabelComboBox = new System.Windows.Forms.ComboBox();
             this.FromDepartureTabelLabel = new System.Windows.Forms.Label();
             this.MapTabPage = new System.Windows.Forms.TabPage();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.DepartureTimeDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KategorieDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BlankColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl.SuspendLayout();
             this.SearchForConnectionTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionSearchDataGridView)).BeginInit();
@@ -375,7 +375,7 @@ namespace MyTransportApp
             this.DepartureTableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DepartureTimeDepartureTableColumn,
             this.ToDepartureTableColumn,
-            this.GateDepartureTableColumn,
+            this.KategorieDepartureTableColumn,
             this.BlankColumn});
             this.DepartureTableDataGridView.Location = new System.Drawing.Point(2, 53);
             this.DepartureTableDataGridView.Margin = new System.Windows.Forms.Padding(2);
@@ -385,38 +385,6 @@ namespace MyTransportApp
             this.DepartureTableDataGridView.RowTemplate.Height = 28;
             this.DepartureTableDataGridView.Size = new System.Drawing.Size(763, 254);
             this.DepartureTableDataGridView.TabIndex = 3;
-            // 
-            // DepartureTimeDepartureTableColumn
-            // 
-            this.DepartureTimeDepartureTableColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.DepartureTimeDepartureTableColumn.HeaderText = "Abfahrtszeit";
-            this.DepartureTimeDepartureTableColumn.MinimumWidth = 8;
-            this.DepartureTimeDepartureTableColumn.Name = "DepartureTimeDepartureTableColumn";
-            this.DepartureTimeDepartureTableColumn.ReadOnly = true;
-            // 
-            // ToDepartureTableColumn
-            // 
-            this.ToDepartureTableColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ToDepartureTableColumn.HeaderText = "Nach";
-            this.ToDepartureTableColumn.MinimumWidth = 8;
-            this.ToDepartureTableColumn.Name = "ToDepartureTableColumn";
-            this.ToDepartureTableColumn.ReadOnly = true;
-            // 
-            // GateDepartureTableColumn
-            // 
-            this.GateDepartureTableColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.GateDepartureTableColumn.HeaderText = "Platform";
-            this.GateDepartureTableColumn.MinimumWidth = 8;
-            this.GateDepartureTableColumn.Name = "GateDepartureTableColumn";
-            this.GateDepartureTableColumn.ReadOnly = true;
-            // 
-            // BlankColumn
-            // 
-            this.BlankColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.BlankColumn.HeaderText = "";
-            this.BlankColumn.Name = "BlankColumn";
-            this.BlankColumn.ReadOnly = true;
-            this.BlankColumn.Width = 398;
             // 
             // SearchDepartureTabelLabel
             // 
@@ -458,6 +426,39 @@ namespace MyTransportApp
             this.MapTabPage.Size = new System.Drawing.Size(772, 291);
             this.MapTabPage.TabIndex = 2;
             this.MapTabPage.Text = "Karte";
+            // 
+            // DepartureTimeDepartureTableColumn
+            // 
+            this.DepartureTimeDepartureTableColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DepartureTimeDepartureTableColumn.HeaderText = "Abfahrtszeit";
+            this.DepartureTimeDepartureTableColumn.MinimumWidth = 8;
+            this.DepartureTimeDepartureTableColumn.Name = "DepartureTimeDepartureTableColumn";
+            this.DepartureTimeDepartureTableColumn.ReadOnly = true;
+            // 
+            // ToDepartureTableColumn
+            // 
+            this.ToDepartureTableColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ToDepartureTableColumn.HeaderText = "Nach";
+            this.ToDepartureTableColumn.MinimumWidth = 8;
+            this.ToDepartureTableColumn.Name = "ToDepartureTableColumn";
+            this.ToDepartureTableColumn.ReadOnly = true;
+            this.ToDepartureTableColumn.Width = 200;
+            // 
+            // KategorieDepartureTableColumn
+            // 
+            this.KategorieDepartureTableColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.KategorieDepartureTableColumn.HeaderText = "Kategorie";
+            this.KategorieDepartureTableColumn.MinimumWidth = 8;
+            this.KategorieDepartureTableColumn.Name = "KategorieDepartureTableColumn";
+            this.KategorieDepartureTableColumn.ReadOnly = true;
+            // 
+            // BlankColumn
+            // 
+            this.BlankColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.BlankColumn.HeaderText = "";
+            this.BlankColumn.Name = "BlankColumn";
+            this.BlankColumn.ReadOnly = true;
+            this.BlankColumn.Width = 298;
             // 
             // MyTransportAppForm
             // 
@@ -504,10 +505,6 @@ namespace MyTransportApp
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.DataGridView DepartureTableDataGridView;
         private System.Windows.Forms.DateTimePicker TimePicker;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DepartureTimeDepartureTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ToDepartureTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GateDepartureTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BlankColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DepartureTimeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DepartureStationColumn;
@@ -519,6 +516,10 @@ namespace MyTransportApp
         private System.Windows.Forms.Button MailSendenButton;
         private System.Windows.Forms.Label MailLabel;
         private System.Windows.Forms.Button ConnectionSearchMapButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DepartureTimeDepartureTableColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ToDepartureTableColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KategorieDepartureTableColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BlankColumn;
     }
 }
 
