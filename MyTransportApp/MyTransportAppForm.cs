@@ -114,38 +114,49 @@ namespace MyTransportApp
             ToComboBox.Text = fromStation;
         }
 
-
-        private void FromDepartureTabelKeyUp(object sender, KeyEventArgs e)
+        private void SuggestedSearch(ComboBox combobox, KeyEventArgs e) 
         {
             if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Left && e.KeyCode != Keys.Right)
             {
-                try
+                if (combobox.Text != "")
                 {
-                    string eingabee = DepartureTabelComboBox.Text;
-                    //Liste mit Stationen erstellen
-                    Stations stations = transport.GetStations(DepartureTabelComboBox.Text);
-
-                    this.DepartureTabelComboBox.Items.Clear();
-                    this.DepartureTabelComboBox.SelectionStart = this.DepartureTabelComboBox.Text.Length + 1;
-                    if (DepartureTabelComboBox.Text != "")
+                    try
                     {
+                        string eingabee = combobox.Text;
+                        combobox.Items.Clear();
+                        combobox.SelectionStart = combobox.Text.Length + 1;
+
+                        //Liste mit Stationen erstellen
+                        Stations stations = transport.GetStations(combobox.Text);
+
                         foreach (var singlestation in stations.StationList)
                         {
-                            this.DepartureTabelComboBox.Items.Add(singlestation.Name);
+                            if (singlestation != null)
+                            {
+                                combobox.Items.Add(singlestation.Name);
+                            }
                         }
-                        DepartureTabelComboBox.DroppedDown = true;
-                        DepartureTabelComboBox.Text = eingabee;
-                        DepartureTabelComboBox.SelectionStart = DepartureTabelComboBox.Text.Length + 1;
+                        combobox.DroppedDown = true;
+                        combobox.Text = eingabee;
+                        combobox.SelectionStart = combobox.Text.Length + 1;
                     }
-                }
-                catch
-                {
-                    DepartureTabelComboBox.Items.Clear();
-                    DepartureTabelComboBox.SelectionStart = DepartureTabelComboBox.Text.Length + 1;
-                    DepartureTabelComboBox.Items.Add("Keine Ergebnisse");
+                    catch
+                    {
+                        combobox.Items.Clear();
+                        combobox.SelectionStart = combobox.Text.Length + 1;
+                        combobox.Items.Add("Keine Ergebnisse");
+                    }
                 }
             }
         }
+        
+
+        private void FromDepartureTabelKeyUp(object sender, KeyEventArgs e)
+        {
+            SuggestedSearch(DepartureTabelComboBox, e);
+        }
+
+
 
 
 
