@@ -119,14 +119,9 @@ namespace MyTransportApp
         {
             if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Left && e.KeyCode != Keys.Right)
             {
-
-
-
                 try
                 {
-                    /*  if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Right && e.KeyCode != Keys.Down && e.KeyCode != Keys.Left)
-                      {*/
-
+                    string eingabee = DepartureTabelComboBox.Text;
                     //Liste mit Stationen erstellen
                     Stations stations = transport.GetStations(DepartureTabelComboBox.Text);
 
@@ -139,10 +134,9 @@ namespace MyTransportApp
                             this.DepartureTabelComboBox.Items.Add(singlestation.Name);
                         }
                         DepartureTabelComboBox.DroppedDown = true;
-
-                        // DepartureTabelComboBox.SelectedIndex = 0;
+                        DepartureTabelComboBox.Text = eingabee;
+                        DepartureTabelComboBox.SelectionStart = DepartureTabelComboBox.Text.Length + 1;
                     }
-                    /*}*/
                 }
                 catch
                 {
@@ -150,9 +144,6 @@ namespace MyTransportApp
                     DepartureTabelComboBox.SelectionStart = DepartureTabelComboBox.Text.Length + 1;
                     DepartureTabelComboBox.Items.Add("Keine Ergebnisse");
                 }
-            }
-            else { 
-            
             }
         }
 
