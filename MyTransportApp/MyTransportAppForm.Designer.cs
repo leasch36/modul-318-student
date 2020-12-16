@@ -55,15 +55,15 @@ namespace MyTransportApp
             this.SearchButton = new System.Windows.Forms.Button();
             this.DepartureBoardTabPage = new System.Windows.Forms.TabPage();
             this.DepartureTableDataGridView = new System.Windows.Forms.DataGridView();
+            this.DepartureTimeDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LinieDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BlankColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchDepartureTabelLabel = new System.Windows.Forms.Button();
             this.DepartureTabelComboBox = new System.Windows.Forms.ComboBox();
             this.FromDepartureTabelLabel = new System.Windows.Forms.Label();
             this.MapTabPage = new System.Windows.Forms.TabPage();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.DepartureTimeDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LinieDepartureTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BlankColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl.SuspendLayout();
             this.SearchForConnectionTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionSearchDataGridView)).BeginInit();
@@ -95,7 +95,7 @@ namespace MyTransportApp
             this.TabControl.Margin = new System.Windows.Forms.Padding(2);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(780, 324);
+            this.TabControl.Size = new System.Drawing.Size(780, 332);
             this.TabControl.TabIndex = 2;
             // 
             // SearchForConnectionTabPage
@@ -120,7 +120,7 @@ namespace MyTransportApp
             this.SearchForConnectionTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.SearchForConnectionTabPage.Name = "SearchForConnectionTabPage";
             this.SearchForConnectionTabPage.Padding = new System.Windows.Forms.Padding(2);
-            this.SearchForConnectionTabPage.Size = new System.Drawing.Size(772, 291);
+            this.SearchForConnectionTabPage.Size = new System.Drawing.Size(772, 299);
             this.SearchForConnectionTabPage.TabIndex = 0;
             this.SearchForConnectionTabPage.Text = "Verbindungssuche";
             // 
@@ -202,7 +202,7 @@ namespace MyTransportApp
             this.ConnectionSearchDataGridView.ReadOnly = true;
             this.ConnectionSearchDataGridView.RowHeadersWidth = 62;
             this.ConnectionSearchDataGridView.RowTemplate.Height = 28;
-            this.ConnectionSearchDataGridView.Size = new System.Drawing.Size(764, 213);
+            this.ConnectionSearchDataGridView.Size = new System.Drawing.Size(764, 221);
             this.ConnectionSearchDataGridView.TabIndex = 5;
             // 
             // DateColumn
@@ -327,17 +327,17 @@ namespace MyTransportApp
             this.ToComboBox.Name = "ToComboBox";
             this.ToComboBox.Size = new System.Drawing.Size(92, 23);
             this.ToComboBox.TabIndex = 2;
+            this.ToComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ToSearchConnectionKeyUp);
             // 
             // FromComboBox
             // 
-            this.FromComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.FromComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.FromComboBox.FormattingEnabled = true;
             this.FromComboBox.Location = new System.Drawing.Point(41, 18);
             this.FromComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.FromComboBox.Name = "FromComboBox";
             this.FromComboBox.Size = new System.Drawing.Size(104, 23);
             this.FromComboBox.TabIndex = 1;
+            this.FromComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FromSearchConnectionKeyUp);
             // 
             // SearchButton
             // 
@@ -362,7 +362,7 @@ namespace MyTransportApp
             this.DepartureBoardTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.DepartureBoardTabPage.Name = "DepartureBoardTabPage";
             this.DepartureBoardTabPage.Padding = new System.Windows.Forms.Padding(2);
-            this.DepartureBoardTabPage.Size = new System.Drawing.Size(772, 291);
+            this.DepartureBoardTabPage.Size = new System.Drawing.Size(772, 299);
             this.DepartureBoardTabPage.TabIndex = 1;
             this.DepartureBoardTabPage.Text = "Abfahrtstafel";
             // 
@@ -377,56 +377,14 @@ namespace MyTransportApp
             this.ToDepartureTableColumn,
             this.LinieDepartureTableColumn,
             this.BlankColumn});
-            this.DepartureTableDataGridView.Location = new System.Drawing.Point(2, 53);
+            this.DepartureTableDataGridView.Location = new System.Drawing.Point(3, 72);
             this.DepartureTableDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.DepartureTableDataGridView.Name = "DepartureTableDataGridView";
             this.DepartureTableDataGridView.ReadOnly = true;
             this.DepartureTableDataGridView.RowHeadersWidth = 62;
             this.DepartureTableDataGridView.RowTemplate.Height = 28;
-            this.DepartureTableDataGridView.Size = new System.Drawing.Size(763, 236);
+            this.DepartureTableDataGridView.Size = new System.Drawing.Size(763, 224);
             this.DepartureTableDataGridView.TabIndex = 3;
-            // 
-            // SearchDepartureTabelLabel
-            // 
-            this.SearchDepartureTabelLabel.Location = new System.Drawing.Point(161, 24);
-            this.SearchDepartureTabelLabel.Margin = new System.Windows.Forms.Padding(2);
-            this.SearchDepartureTabelLabel.Name = "SearchDepartureTabelLabel";
-            this.SearchDepartureTabelLabel.Size = new System.Drawing.Size(59, 25);
-            this.SearchDepartureTabelLabel.TabIndex = 1;
-            this.SearchDepartureTabelLabel.Text = "Suchen";
-            this.SearchDepartureTabelLabel.UseVisualStyleBackColor = true;
-            this.SearchDepartureTabelLabel.Click += new System.EventHandler(this.SearchDepartureTabelClick);
-            // 
-            // DepartureTabelComboBox
-            // 
-            this.DepartureTabelComboBox.FormattingEnabled = true;
-            this.DepartureTabelComboBox.Location = new System.Drawing.Point(40, 24);
-            this.DepartureTabelComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DepartureTabelComboBox.Name = "DepartureTabelComboBox";
-            this.DepartureTabelComboBox.Size = new System.Drawing.Size(107, 23);
-            this.DepartureTabelComboBox.TabIndex = 0;
-            this.DepartureTabelComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FromDepartureTabelKeyUp);
-            // 
-            // FromDepartureTabelLabel
-            // 
-            this.FromDepartureTabelLabel.AutoSize = true;
-            this.FromDepartureTabelLabel.Location = new System.Drawing.Point(4, 29);
-            this.FromDepartureTabelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.FromDepartureTabelLabel.Name = "FromDepartureTabelLabel";
-            this.FromDepartureTabelLabel.Size = new System.Drawing.Size(32, 15);
-            this.FromDepartureTabelLabel.TabIndex = 0;
-            this.FromDepartureTabelLabel.Text = "Von:";
-            // 
-            // MapTabPage
-            // 
-            this.MapTabPage.BackColor = System.Drawing.Color.Azure;
-            this.MapTabPage.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MapTabPage.Location = new System.Drawing.Point(4, 29);
-            this.MapTabPage.Margin = new System.Windows.Forms.Padding(2);
-            this.MapTabPage.Name = "MapTabPage";
-            this.MapTabPage.Size = new System.Drawing.Size(772, 291);
-            this.MapTabPage.TabIndex = 2;
-            this.MapTabPage.Text = "Karte";
             // 
             // DepartureTimeDepartureTableColumn
             // 
@@ -461,12 +419,54 @@ namespace MyTransportApp
             this.BlankColumn.ReadOnly = true;
             this.BlankColumn.Width = 298;
             // 
+            // SearchDepartureTabelLabel
+            // 
+            this.SearchDepartureTabelLabel.Location = new System.Drawing.Point(161, 32);
+            this.SearchDepartureTabelLabel.Margin = new System.Windows.Forms.Padding(2);
+            this.SearchDepartureTabelLabel.Name = "SearchDepartureTabelLabel";
+            this.SearchDepartureTabelLabel.Size = new System.Drawing.Size(59, 25);
+            this.SearchDepartureTabelLabel.TabIndex = 1;
+            this.SearchDepartureTabelLabel.Text = "Suchen";
+            this.SearchDepartureTabelLabel.UseVisualStyleBackColor = true;
+            this.SearchDepartureTabelLabel.Click += new System.EventHandler(this.SearchDepartureTabelClick);
+            // 
+            // DepartureTabelComboBox
+            // 
+            this.DepartureTabelComboBox.FormattingEnabled = true;
+            this.DepartureTabelComboBox.Location = new System.Drawing.Point(40, 32);
+            this.DepartureTabelComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DepartureTabelComboBox.Name = "DepartureTabelComboBox";
+            this.DepartureTabelComboBox.Size = new System.Drawing.Size(107, 23);
+            this.DepartureTabelComboBox.TabIndex = 0;
+            this.DepartureTabelComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FromDepartureTabelKeyUp);
+            // 
+            // FromDepartureTabelLabel
+            // 
+            this.FromDepartureTabelLabel.AutoSize = true;
+            this.FromDepartureTabelLabel.Location = new System.Drawing.Point(4, 37);
+            this.FromDepartureTabelLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.FromDepartureTabelLabel.Name = "FromDepartureTabelLabel";
+            this.FromDepartureTabelLabel.Size = new System.Drawing.Size(32, 15);
+            this.FromDepartureTabelLabel.TabIndex = 0;
+            this.FromDepartureTabelLabel.Text = "Von:";
+            // 
+            // MapTabPage
+            // 
+            this.MapTabPage.BackColor = System.Drawing.Color.Azure;
+            this.MapTabPage.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MapTabPage.Location = new System.Drawing.Point(4, 29);
+            this.MapTabPage.Margin = new System.Windows.Forms.Padding(2);
+            this.MapTabPage.Name = "MapTabPage";
+            this.MapTabPage.Size = new System.Drawing.Size(772, 291);
+            this.MapTabPage.TabIndex = 2;
+            this.MapTabPage.Text = "Karte";
+            // 
             // MyTransportAppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(774, 357);
+            this.ClientSize = new System.Drawing.Size(774, 366);
             this.Controls.Add(this.TabControl);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);

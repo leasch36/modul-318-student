@@ -156,6 +156,16 @@ namespace MyTransportApp
             SuggestedSearch(DepartureTabelComboBox, e);
         }
 
+        private void FromSearchConnectionKeyUp(object sender, KeyEventArgs e)
+        {
+            SuggestedSearch(FromComboBox, e);
+        }
+
+        private void ToSearchConnectionKeyUp(object sender, KeyEventArgs e)
+        {
+            SuggestedSearch(ToComboBox, e);
+
+        }
 
 
 
@@ -195,17 +205,12 @@ namespace MyTransportApp
 
 
 
-
-
-
-
-
-
+       
 
 
         //https://stackoverflow.com/questions/809538/how-to-send-email-using-default-email-client
         private void MailSendenButtonClick(object sender, EventArgs e)
-        {
+        { /*
             try
             {   
                 //neue List erstellen
@@ -226,8 +231,8 @@ namespace MyTransportApp
             catch
             {
                 MessageBox.Show("Sie haben keine Verbindung auswaehlt.\n Drücken Sie in die leere Zelle links der gewünschten Verbindung.");
-            }
+            }*/
         }
 
-    }
+}
 }

@@ -42,5 +42,16 @@
 
             Assert.IsNotNull(connections);
         }
+
+        [TestMethod]
+        public void ConnectionsTest()
+        {
+            testee = new Transport();
+            DateTime time = DateTime.Now;
+            DateTime date = DateTime.Now;
+            var connections = testee.GetConnections("Beckenried", "Bern", date, time, 2);
+
+            Assert.IsNotNull(connections);
+        }
     }
 }
