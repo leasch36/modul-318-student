@@ -33,11 +33,10 @@ namespace MyTransportApp
         {
             //Rows leeren
             this.ConnectionSearchDataGridView.Rows.Clear();
-
-            //Falls die Pflichfelder Von+Nach leer sind, gibt es eine Fehlermeldung
-            if (FromComboBox.Text != "" && ToComboBox.Text != "")
+            try
             {
-                try
+                //Falls die Pflichfelder Von+Nach leer sind, gibt es eine Fehlermeldung
+                if (FromComboBox.Text != "" && ToComboBox.Text != "")
                 {
                     //Alle Verbindungen wo Station mit User-Stationeingabe übereinstimmt, in Objekt speichern
                     var connections = transport.GetConnections(FromComboBox.Text, ToComboBox.Text, DatePicker.Value, TimePicker.Value);
@@ -55,17 +54,17 @@ namespace MyTransportApp
                     }
                     else
                     {
-                        MessageBox.Show("Keine Verbindung gefunden. Bitte überprüfen Sie Ihre Eingaben.");
+                        MessageBox.Show("Keine Verbindung zwischen den Stationen gefunden. Bitte ändern Sie Ihre Auswahl.");
                     }
                 }
-                catch 
+                else
                 {
-                    MessageBox.Show("Keine Verbindung gefunden. Bitte überprüfen Sie Ihre Eingaben.");
+                    MessageBox.Show("Bitte geben Sie eine Start- UND Endstation ein.");
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Bitte geben Sie eine Start- UND Endstation ein.");
+                MessageBox.Show("Fehler: Bitte überprüfen Sie Ihre Eingabe.");
             }
         }
 
@@ -73,26 +72,38 @@ namespace MyTransportApp
         {
             //Rows leeren
             this.DepartureTableDataGridView.Rows.Clear();
-
-            if (DepartureTabelComboBox.Text != "")
+            try
             {
-                //folgendes hätte die ID der Station ergeben, brauche ich aber gar nicht
-                //var stations = transport.GetStations(DepartureTabelComboBox.Text);
-                //string stationList0 = Convert.ToString(stations.StationList[0]);
-               // string stationID = stationList;
-                DateTime time = DateTime.Now;
-                StationBoardRoot connection = transport.GetStationBoard(DepartureTabelComboBox.Text, "0", time, 6);
+                if (DepartureTabelComboBox.Text != "")
+                {
+                    //folgendes hätte die ID der Station ergeben, brauche ich aber gar nicht
+                    //var stations = transport.GetStations(DepartureTabelComboBox.Text);
+                    //string stationList0 = Convert.ToString(stations.StationList[0]);
+                    // string stationID = stationList;
+                    DateTime time = DateTime.Now;
+                    StationBoardRoot connections = transport.GetStationBoard(DepartureTabelComboBox.Text, "0", time, 6);
 
-                foreach (var singleCon in connection.Entries) //Entries = List<StationBoard>
-                { //List<Connection> ist eine Liste mit dem Datentyp Connection
-                    this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString().Substring(11,5), singleCon.To.ToString(), singleCon.Category.ToString());
+                    if (connections.Entries.Count != 0)
+                    {
+                        foreach (var singleCon in connections.Entries) //Entries = List<StationBoard>
+                        { //List<Connection> ist eine Liste mit dem Datentyp Connection
+                            this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString().Substring(11, 5), singleCon.To.ToString(), singleCon.Category.ToString());
 
-                } 
+                        }
+                    }
+                    else {
+                        MessageBox.Show("Es gibt aktuell keine Abfahrten von dieser Station.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bitte geben Sie eine Station ein.");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Sie haben einen ungueltigen Wert eingegeben.");
-            } 
+                MessageBox.Show("Fehler: Bitte überprüfen Sie Ihre Eingabe.");
+            }
         }
 
         private void ChangeStationFieldsButtonClick(object sender, EventArgs e)
