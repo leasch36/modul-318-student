@@ -32,6 +32,9 @@ namespace MyTransportApp
             this.label1 = new System.Windows.Forms.Label();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.SearchForConnectionTabPage = new System.Windows.Forms.TabPage();
+            this.ConnectionSearchMapButton = new System.Windows.Forms.Button();
+            this.MailSendenButton = new System.Windows.Forms.Button();
+            this.MailLabel = new System.Windows.Forms.Label();
             this.ChangeStationFieldsButton = new System.Windows.Forms.Button();
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
             this.ConnectionSearchDataGridView = new System.Windows.Forms.DataGridView();
@@ -61,9 +64,6 @@ namespace MyTransportApp
             this.FromDepartureTabelLabel = new System.Windows.Forms.Label();
             this.MapTabPage = new System.Windows.Forms.TabPage();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.MailLabel = new System.Windows.Forms.Label();
-            this.MailSendenButton = new System.Windows.Forms.Button();
-            this.ConnectionSearchMapButton = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.SearchForConnectionTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionSearchDataGridView)).BeginInit();
@@ -123,6 +123,37 @@ namespace MyTransportApp
             this.SearchForConnectionTabPage.Size = new System.Drawing.Size(772, 291);
             this.SearchForConnectionTabPage.TabIndex = 0;
             this.SearchForConnectionTabPage.Text = "Verbindungssuche";
+            // 
+            // ConnectionSearchMapButton
+            // 
+            this.ConnectionSearchMapButton.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ConnectionSearchMapButton.Location = new System.Drawing.Point(692, 19);
+            this.ConnectionSearchMapButton.Name = "ConnectionSearchMapButton";
+            this.ConnectionSearchMapButton.Size = new System.Drawing.Size(75, 23);
+            this.ConnectionSearchMapButton.TabIndex = 9;
+            this.ConnectionSearchMapButton.Text = "Karte";
+            this.ConnectionSearchMapButton.UseVisualStyleBackColor = true;
+            // 
+            // MailSendenButton
+            // 
+            this.MailSendenButton.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MailSendenButton.Location = new System.Drawing.Point(692, 48);
+            this.MailSendenButton.Name = "MailSendenButton";
+            this.MailSendenButton.Size = new System.Drawing.Size(75, 23);
+            this.MailSendenButton.TabIndex = 8;
+            this.MailSendenButton.Text = "senden";
+            this.MailSendenButton.UseVisualStyleBackColor = true;
+            this.MailSendenButton.Click += new System.EventHandler(this.MailSendenButtonClick);
+            // 
+            // MailLabel
+            // 
+            this.MailLabel.AutoSize = true;
+            this.MailLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MailLabel.Location = new System.Drawing.Point(558, 53);
+            this.MailLabel.Name = "MailLabel";
+            this.MailLabel.Size = new System.Drawing.Size(128, 15);
+            this.MailLabel.TabIndex = 7;
+            this.MailLabel.Text = "Verbindung per E-Mail";
             // 
             // ChangeStationFieldsButton
             // 
@@ -427,37 +458,6 @@ namespace MyTransportApp
             this.MapTabPage.Size = new System.Drawing.Size(772, 291);
             this.MapTabPage.TabIndex = 2;
             this.MapTabPage.Text = "Karte";
-            // 
-            // MailLabel
-            // 
-            this.MailLabel.AutoSize = true;
-            this.MailLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MailLabel.Location = new System.Drawing.Point(558, 53);
-            this.MailLabel.Name = "MailLabel";
-            this.MailLabel.Size = new System.Drawing.Size(128, 15);
-            this.MailLabel.TabIndex = 7;
-            this.MailLabel.Text = "Verbindung per E-Mail";
-            // 
-            // MailSendenButton
-            // 
-            this.MailSendenButton.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MailSendenButton.Location = new System.Drawing.Point(692, 48);
-            this.MailSendenButton.Name = "MailSendenButton";
-            this.MailSendenButton.Size = new System.Drawing.Size(75, 23);
-            this.MailSendenButton.TabIndex = 8;
-            this.MailSendenButton.Text = "senden";
-            this.MailSendenButton.UseVisualStyleBackColor = true;
-            this.MailSendenButton.Click += new System.EventHandler(this.MailSendenButtonClick);
-            // 
-            // ConnectionSearchMapButton
-            // 
-            this.ConnectionSearchMapButton.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ConnectionSearchMapButton.Location = new System.Drawing.Point(692, 19);
-            this.ConnectionSearchMapButton.Name = "ConnectionSearchMapButton";
-            this.ConnectionSearchMapButton.Size = new System.Drawing.Size(75, 23);
-            this.ConnectionSearchMapButton.TabIndex = 9;
-            this.ConnectionSearchMapButton.Text = "Karte";
-            this.ConnectionSearchMapButton.UseVisualStyleBackColor = true;
             // 
             // MyTransportAppForm
             // 
