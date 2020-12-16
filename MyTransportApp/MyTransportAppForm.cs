@@ -39,7 +39,7 @@ namespace MyTransportApp
                 if (FromComboBox.Text != "" && ToComboBox.Text != "")
                 {
                     //Alle Verbindungen wo Station mit User-Stationeingabe übereinstimmt, in Objekt speichern
-                    var connections = transport.GetConnections(FromComboBox.Text, ToComboBox.Text, DatePicker.Value, TimePicker.Value);
+                    var connections = transport.GetConnections(FromComboBox.Text, ToComboBox.Text, DatePicker.Value, TimePicker.Value, 7);
 
                     //Nur wenn Verbindungen gefunden wurden
                     if (connections.ConnectionList.Count != 0)
@@ -81,14 +81,13 @@ namespace MyTransportApp
                     //string stationList0 = Convert.ToString(stations.StationList[0]);
                     // string stationID = stationList;
                     DateTime time = DateTime.Now;
-                    StationBoardRoot connections = transport.GetStationBoard(DepartureTabelComboBox.Text, "0", time, 6);
+                    StationBoardRoot connections = transport.GetStationBoard(DepartureTabelComboBox.Text, "0", time, 7);
 
                     if (connections.Entries.Count != 0)
                     {
                         foreach (var singleCon in connections.Entries) //Entries = List<StationBoard>
                         { //List<Connection> ist eine Liste mit dem Datentyp Connection
-                            this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString().Substring(11, 5), singleCon.To.ToString(), singleCon.Category.ToString());
-
+                            this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString().Substring(11, 5), singleCon.To.ToString(),singleCon.Name.ToString());
                         }
                     }
                     else {
@@ -116,6 +115,46 @@ namespace MyTransportApp
         }
 
 
+        private void FromDepartureTabelKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Left && e.KeyCode != Keys.Right)
+            {
+
+
+
+                try
+                {
+                    /*  if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Right && e.KeyCode != Keys.Down && e.KeyCode != Keys.Left)
+                      {*/
+
+                    //Liste mit Stationen erstellen
+                    Stations stations = transport.GetStations(DepartureTabelComboBox.Text);
+
+                    this.DepartureTabelComboBox.Items.Clear();
+                    this.DepartureTabelComboBox.SelectionStart = this.DepartureTabelComboBox.Text.Length + 1;
+                    if (DepartureTabelComboBox.Text != "")
+                    {
+                        foreach (var singlestation in stations.StationList)
+                        {
+                            this.DepartureTabelComboBox.Items.Add(singlestation.Name);
+                        }
+                        DepartureTabelComboBox.DroppedDown = true;
+
+                        // DepartureTabelComboBox.SelectedIndex = 0;
+                    }
+                    /*}*/
+                }
+                catch
+                {
+                    DepartureTabelComboBox.Items.Clear();
+                    DepartureTabelComboBox.SelectionStart = DepartureTabelComboBox.Text.Length + 1;
+                    DepartureTabelComboBox.Items.Add("Keine Ergebnisse");
+                }
+            }
+            else { 
+            
+            }
+        }
 
 
 
@@ -187,5 +226,6 @@ namespace MyTransportApp
                 MessageBox.Show("Sie haben keine Verbindung auswaehlt.\n Drücken Sie in die leere Zelle links der gewünschten Verbindung.");
             }
         }
+
     }
 }

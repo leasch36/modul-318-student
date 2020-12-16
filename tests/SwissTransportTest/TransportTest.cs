@@ -26,7 +26,7 @@
         {
             testee = new Transport();
             DateTime time = DateTime.Now;
-            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007", time, 6);
+            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007", time, 7);
 
             Assert.IsNotNull(stationBoard);
         }
@@ -38,7 +38,7 @@
             testee = new Transport();
             DateTime time = DateTime.Now;
             DateTime date = DateTime.Now;
-            var connections = this.testee.GetConnections("Sursee", "Luzern", date , time);
+            var connections = this.testee.GetConnections("Sursee", "Luzern", date , time, 7);
 
             Assert.IsNotNull(connections);
         }
