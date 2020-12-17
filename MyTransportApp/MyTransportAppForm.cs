@@ -39,11 +39,10 @@ namespace MyTransportApp
                     //Nur wenn Verbindungen gefunden wurden
                     if (connections.ConnectionList.Count != 0)
                     {
-                        //Diese Verbindungen wo jetzt ok sind, muss ich einzeln in eine Variable speichern, 
-                        //damit ich diese in die AusgabeTabelle einfügen kann
+                        //Diese Verbindungen wo jetzt ok sind, werden einzeln in eine Variable gespeichert, 
+                        //damit diese in die AusgabeTabelle eingefügt werden können
                         foreach (Connection singleCon in connections.ConnectionList)
                         {
-                            //List<Connection> ist eine Liste mit dem Datentyp Connection
                             this.ConnectionSearchDataGridView.Rows.Add(singleCon.From.Departure.ToString().Substring(0, 10), singleCon.From.Departure.ToString().Substring(11, 5), singleCon.From.Station.Name, singleCon.To.Station.Name, singleCon.To.Arrival.ToString().Substring(11, 5), singleCon.Duration.Substring(3, 5), singleCon.From.Platform);
                         }
                     }
@@ -78,7 +77,6 @@ namespace MyTransportApp
                     {
                         foreach (var singleCon in connections.Entries) //Entries = List<StationBoard>
                         { 
-                            //List<Connection> ist eine Liste mit dem Datentyp Connection
                             this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString().Substring(11, 5), singleCon.To.ToString(),singleCon.Name.ToString());
                         }
                     }
@@ -203,7 +201,9 @@ namespace MyTransportApp
             {
                 if (StationMapComboBox.Text != "")
                 {
+                    //Stationsauswahl an Funktione weitergeben um die Koordinaten derer zu ermitteln
                     var Coords = GetStationGPSCoodrinates(StationMapComboBox.Text);
+                    //erhaltene Koordinaten an Funktion MoveMap weitergeben damit Station auf der Karte gefunden und angezeigt wird.
                     MoveMapToGPSCoordinates(Coords);
                 }
                 else
@@ -217,7 +217,7 @@ namespace MyTransportApp
             }
         }
 
-        // X- und Y-Koordinaten einer Station holen und zusammenfassen
+        //X- und Y-Koordinaten einer Station holen und zusammenfassen
         private string GetStationGPSCoodrinates(string Station)
         {
             var station = transport.GetStations(Station).StationList.FirstOrDefault(x => Equals(x.Name, Station));
@@ -233,7 +233,7 @@ namespace MyTransportApp
                 return "ERROR";
             }
         }
-        // aktualisiert den Browser mit den aktuellen GPS-Koordinaten.
+        //aktualisiert den Browser mit den aktuellen GPS-Koordinaten.
         private void MoveMapToGPSCoordinates(string Coordinates)
         {
             Browser.Navigate("https://www.openstreetmap.org/#map=19/47.05010/8.31036&layers=T");
