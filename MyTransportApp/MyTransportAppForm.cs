@@ -20,13 +20,9 @@ namespace MyTransportApp
         public MyTransportAppForm()
         {
             InitializeComponent();
+            //Aktuelles Datum + Uhrzeit
             DatePicker.Text = DateTime.Now.ToString("yyyy-MM-dd");
             TimePicker.Text = DateTime.Now.ToString("HH:mm");
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void SearchButtonClick(object sender, EventArgs e)
@@ -40,7 +36,6 @@ namespace MyTransportApp
                 {
                     //Alle Verbindungen wo Station mit User-Stationeingabe übereinstimmt, in Objekt speichern
                     var connections = transport.GetConnections(FromComboBox.Text, ToComboBox.Text, DatePicker.Value, TimePicker.Value, 7);
-
                     //Nur wenn Verbindungen gefunden wurden
                     if (connections.ConnectionList.Count != 0)
                     {
@@ -76,21 +71,19 @@ namespace MyTransportApp
             {
                 if (DepartureTabelComboBox.Text != "")
                 {
-                    //folgendes hätte die ID der Station ergeben, brauche ich aber gar nicht
-                    //var stations = transport.GetStations(DepartureTabelComboBox.Text);
-                    //string stationList0 = Convert.ToString(stations.StationList[0]);
-                    // string stationID = stationList;
                     DateTime time = DateTime.Now;
                     StationBoardRoot connections = transport.GetStationBoard(DepartureTabelComboBox.Text, "0", time, 7);
 
                     if (connections.Entries.Count != 0)
                     {
                         foreach (var singleCon in connections.Entries) //Entries = List<StationBoard>
-                        { //List<Connection> ist eine Liste mit dem Datentyp Connection
+                        { 
+                            //List<Connection> ist eine Liste mit dem Datentyp Connection
                             this.DepartureTableDataGridView.Rows.Add(singleCon.Stop.Departure.ToString().Substring(11, 5), singleCon.To.ToString(),singleCon.Name.ToString());
                         }
                     }
-                    else {
+                    else 
+                    {
                         MessageBox.Show("Es gibt aktuell keine Abfahrten von dieser Station.");
                     }
                 }
@@ -105,6 +98,7 @@ namespace MyTransportApp
             }
         }
 
+        //Feldinhalt von From und To tauschen
         private void ChangeStationFieldsButtonClick(object sender, EventArgs e)
         {
             var fromStation = FromComboBox.Text;
@@ -114,21 +108,26 @@ namespace MyTransportApp
             ToComboBox.Text = fromStation;
         }
 
+        //Stationsvorschläge beim tippen
         private void SuggestedSearch(ComboBox combobox, KeyEventArgs e) 
         {
             if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Left && e.KeyCode != Keys.Right)
             {
+                //Wenn Combobox nicht leer
                 if (combobox.Text != "")
                 {
                     try
                     {
                         string eingabee = combobox.Text;
+                        //DropDown Items leeren
                         combobox.Items.Clear();
+                        //Curser ans Ende setzen
                         combobox.SelectionStart = combobox.Text.Length + 1;
 
                         //Liste mit Stationen erstellen
                         Stations stations = transport.GetStations(combobox.Text);
 
+                        //DropDown mit Stationsvorschlägen füllen
                         foreach (var singlestation in stations.StationList)
                         {
                             if (singlestation != null)
@@ -136,6 +135,7 @@ namespace MyTransportApp
                                 combobox.Items.Add(singlestation.Name);
                             }
                         }
+                        //DropDown geht auf bzw. wird angezeigt
                         combobox.DroppedDown = true;
                         combobox.Text = eingabee;
                         combobox.SelectionStart = combobox.Text.Length + 1;
@@ -167,13 +167,17 @@ namespace MyTransportApp
 
         }
 
+        private void StationSearchMapKeyUp(object sender, KeyEventArgs e)
+        {
+            SuggestedSearch(StationMapComboBox, e);
+        }
+
         private void MailSendenButtonClick(object sender, EventArgs e)
         { 
             try
             {   
                 //neue List erstellen
                 var dataGridViewList = new List<string>();
-
                 //Jede Verbindung(1 row) welche ausgewählt wurde einzeln weitergeben
                 foreach (DataGridViewRow row in ConnectionSearchDataGridView.SelectedRows)
                 {
@@ -192,5 +196,49 @@ namespace MyTransportApp
             }
         }
 
-}
+
+        private void StationMapButton(object sender, EventArgs e)
+        {
+            try
+            {
+                if (StationMapComboBox.Text != "")
+                {
+                    var Coords = GetStationGPSCoodrinates(StationMapComboBox.Text);
+                    MoveMapToGPSCoordinates(Coords);
+                }
+                else
+                {
+                    MessageBox.Show("Bitte geben Sie eine Station ein.");
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Fehler: Bitte überprüfen Sie Ihre Eingabe.");
+            }
+        }
+
+        // X- und Y-Koordinaten einer Station holen und zusammenfassen
+        private string GetStationGPSCoodrinates(string Station)
+        {
+            var station = transport.GetStations(Station).StationList.FirstOrDefault(x => Equals(x.Name, Station));
+            if (station != null)
+            {
+                string x = Convert.ToString(station.Coordinate.XCoordinate);
+                string y = Convert.ToString(station.Coordinate.YCoordinate);
+                string amalgamatedCoordinates = x + "/" + y;
+                return amalgamatedCoordinates;
+            }
+            else
+            {
+                return "ERROR";
+            }
+        }
+        // aktualisiert den Browser mit den aktuellen GPS-Koordinaten.
+        private void MoveMapToGPSCoordinates(string Coordinates)
+        {
+            Browser.Navigate("https://www.openstreetmap.org/#map=19/47.05010/8.31036&layers=T");
+            var URL = "https://www.openstreetmap.org/#map=18/" + Coordinates + "&layers=T";
+            Browser.Navigate(URL);
+        }
+    }
 }

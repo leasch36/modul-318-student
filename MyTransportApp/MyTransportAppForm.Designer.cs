@@ -32,7 +32,6 @@ namespace MyTransportApp
             this.label1 = new System.Windows.Forms.Label();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.SearchForConnectionTabPage = new System.Windows.Forms.TabPage();
-            this.ConnectionSearchMapButton = new System.Windows.Forms.Button();
             this.MailSendenButton = new System.Windows.Forms.Button();
             this.MailLabel = new System.Windows.Forms.Label();
             this.ChangeStationFieldsButton = new System.Windows.Forms.Button();
@@ -64,11 +63,16 @@ namespace MyTransportApp
             this.FromDepartureTabelLabel = new System.Windows.Forms.Label();
             this.MapTabPage = new System.Windows.Forms.TabPage();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.StationMapComboBox = new System.Windows.Forms.ComboBox();
+            this.StationSearchMapButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Browser = new System.Windows.Forms.WebBrowser();
             this.TabControl.SuspendLayout();
             this.SearchForConnectionTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionSearchDataGridView)).BeginInit();
             this.DepartureBoardTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DepartureTableDataGridView)).BeginInit();
+            this.MapTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -101,7 +105,6 @@ namespace MyTransportApp
             // SearchForConnectionTabPage
             // 
             this.SearchForConnectionTabPage.BackColor = System.Drawing.Color.Azure;
-            this.SearchForConnectionTabPage.Controls.Add(this.ConnectionSearchMapButton);
             this.SearchForConnectionTabPage.Controls.Add(this.MailSendenButton);
             this.SearchForConnectionTabPage.Controls.Add(this.MailLabel);
             this.SearchForConnectionTabPage.Controls.Add(this.ChangeStationFieldsButton);
@@ -123,16 +126,6 @@ namespace MyTransportApp
             this.SearchForConnectionTabPage.Size = new System.Drawing.Size(772, 299);
             this.SearchForConnectionTabPage.TabIndex = 0;
             this.SearchForConnectionTabPage.Text = "Verbindungssuche";
-            // 
-            // ConnectionSearchMapButton
-            // 
-            this.ConnectionSearchMapButton.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ConnectionSearchMapButton.Location = new System.Drawing.Point(692, 19);
-            this.ConnectionSearchMapButton.Name = "ConnectionSearchMapButton";
-            this.ConnectionSearchMapButton.Size = new System.Drawing.Size(75, 23);
-            this.ConnectionSearchMapButton.TabIndex = 9;
-            this.ConnectionSearchMapButton.Text = "Karte";
-            this.ConnectionSearchMapButton.UseVisualStyleBackColor = true;
             // 
             // MailSendenButton
             // 
@@ -453,13 +446,54 @@ namespace MyTransportApp
             // MapTabPage
             // 
             this.MapTabPage.BackColor = System.Drawing.Color.Azure;
+            this.MapTabPage.Controls.Add(this.Browser);
+            this.MapTabPage.Controls.Add(this.label2);
+            this.MapTabPage.Controls.Add(this.StationSearchMapButton);
+            this.MapTabPage.Controls.Add(this.StationMapComboBox);
             this.MapTabPage.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MapTabPage.Location = new System.Drawing.Point(4, 29);
             this.MapTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.MapTabPage.Name = "MapTabPage";
-            this.MapTabPage.Size = new System.Drawing.Size(772, 291);
+            this.MapTabPage.Size = new System.Drawing.Size(772, 299);
             this.MapTabPage.TabIndex = 2;
             this.MapTabPage.Text = "Karte";
+            // 
+            // StationMapComboBox
+            // 
+            this.StationMapComboBox.FormattingEnabled = true;
+            this.StationMapComboBox.Location = new System.Drawing.Point(64, 33);
+            this.StationMapComboBox.Name = "StationMapComboBox";
+            this.StationMapComboBox.Size = new System.Drawing.Size(121, 23);
+            this.StationMapComboBox.TabIndex = 0;
+            this.StationMapComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.StationSearchMapKeyUp);
+            // 
+            // StationSearchMapButton
+            // 
+            this.StationSearchMapButton.Location = new System.Drawing.Point(203, 33);
+            this.StationSearchMapButton.Name = "StationSearchMapButton";
+            this.StationSearchMapButton.Size = new System.Drawing.Size(75, 23);
+            this.StationSearchMapButton.TabIndex = 1;
+            this.StationSearchMapButton.Text = "Suchen";
+            this.StationSearchMapButton.UseVisualStyleBackColor = true;
+            this.StationSearchMapButton.Click += new System.EventHandler(this.StationMapButton);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Station:";
+            // 
+            // Browser
+            // 
+            this.Browser.Location = new System.Drawing.Point(10, 62);
+            this.Browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.Browser.Name = "Browser";
+            this.Browser.Size = new System.Drawing.Size(750, 226);
+            this.Browser.TabIndex = 3;
+            this.Browser.Url = new System.Uri("https://www.openstreetmap.org/#map=19/47.05010/8.31036&layers=T", System.UriKind.Absolute);
             // 
             // MyTransportAppForm
             // 
@@ -479,6 +513,8 @@ namespace MyTransportApp
             this.DepartureBoardTabPage.ResumeLayout(false);
             this.DepartureBoardTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DepartureTableDataGridView)).EndInit();
+            this.MapTabPage.ResumeLayout(false);
+            this.MapTabPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,11 +552,14 @@ namespace MyTransportApp
         private System.Windows.Forms.Button ChangeStationFieldsButton;
         private System.Windows.Forms.Button MailSendenButton;
         private System.Windows.Forms.Label MailLabel;
-        private System.Windows.Forms.Button ConnectionSearchMapButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn DepartureTimeDepartureTableColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ToDepartureTableColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn LinieDepartureTableColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn BlankColumn;
+        private System.Windows.Forms.Button StationSearchMapButton;
+        private System.Windows.Forms.ComboBox StationMapComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.WebBrowser Browser;
     }
 }
 
