@@ -48,7 +48,7 @@ namespace MyTransportApp
                     }
                     else
                     {
-                        MessageBox.Show("Keine Verbindung zwischen den Stationen gefunden.\nBitte ändern Sie Ihre Auswahl.");
+                        MessageBox.Show("Keine Verbindung zwischen den Stationen gefunden.\nBitte überprüfen Sie Ihre Eingabe.");
                     }
                 }
                 else
