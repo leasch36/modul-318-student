@@ -176,7 +176,6 @@ namespace MyTransportApp
             // 
             this.ConnectionSearchDataGridView.AllowUserToAddRows = false;
             this.ConnectionSearchDataGridView.AllowUserToDeleteRows = false;
-            this.ConnectionSearchDataGridView.AllowUserToResizeColumns = false;
             this.ConnectionSearchDataGridView.AllowUserToResizeRows = false;
             this.ConnectionSearchDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.ConnectionSearchDataGridView.ColumnHeadersHeight = 21;
@@ -363,6 +362,7 @@ namespace MyTransportApp
             // 
             this.DepartureTableDataGridView.AllowUserToAddRows = false;
             this.DepartureTableDataGridView.AllowUserToDeleteRows = false;
+            this.DepartureTableDataGridView.AllowUserToResizeRows = false;
             this.DepartureTableDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.DepartureTableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DepartureTableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

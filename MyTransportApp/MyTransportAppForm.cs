@@ -15,7 +15,7 @@ namespace MyTransportApp
     public partial class MyTransportAppForm : Form
     {
         ITransport transport = new Transport();
-        //Station station = new Station();
+        AutoComplete autocomplete = new AutoComplete();
 
         public MyTransportAppForm()
         {
@@ -48,7 +48,7 @@ namespace MyTransportApp
                     }
                     else
                     {
-                        MessageBox.Show("Keine Verbindung zwischen den Stationen gefunden. Bitte ändern Sie Ihre Auswahl.");
+                        MessageBox.Show("Keine Verbindung zwischen den Stationen gefunden.\nBitte ändern Sie Ihre Auswahl.");
                     }
                 }
                 else
@@ -82,7 +82,7 @@ namespace MyTransportApp
                     }
                     else 
                     {
-                        MessageBox.Show("Es gibt aktuell keine Abfahrten von dieser Station.");
+                        MessageBox.Show("Es gibt keine Abfahrten von dieser Station.\nBitte überprüfen Sie Ihre Eingabe.");
                     }
                 }
                 else
@@ -106,68 +106,28 @@ namespace MyTransportApp
             ToComboBox.Text = fromStation;
         }
 
-        //Stationsvorschläge beim tippen
-        private void SuggestedSearch(ComboBox combobox, KeyEventArgs e) 
-        {
-            if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Left && e.KeyCode != Keys.Right)
-            {
-                //Wenn Combobox nicht leer
-                if (combobox.Text != "")
-                {
-                    try
-                    {
-                        string input = combobox.Text;
-                        //DropDown Items leeren
-                        combobox.Items.Clear();
-                        //Curser ans Ende setzen
-                        combobox.SelectionStart = combobox.Text.Length + 1;
 
-                        //Liste mit Stationen erstellen
-                        Stations stations = transport.GetStations(combobox.Text);
-
-                        //DropDown mit Stationsvorschlägen füllen
-                        foreach (var singlestation in stations.StationList)
-                        {
-                            if (singlestation != null)
-                            {
-                                combobox.Items.Add(singlestation.Name);
-                            }
-                        }
-                        //DropDown geht auf bzw. wird angezeigt
-                        combobox.DroppedDown = true;
-                        combobox.Text = input;
-                        combobox.SelectionStart = combobox.Text.Length + 1;
-                    }
-                    catch
-                    {
-                        combobox.Items.Clear();
-                        combobox.SelectionStart = combobox.Text.Length + 1;
-                        combobox.Items.Add("Keine Ergebnisse");
-                    }
-                }
-            }
-        }
         
 
         private void FromDepartureTabelKeyUp(object sender, KeyEventArgs e)
         {
-            SuggestedSearch(DepartureTabelComboBox, e);
+            autocomplete.SuggestedSearch(DepartureTabelComboBox, e);
         }
 
         private void FromSearchConnectionKeyUp(object sender, KeyEventArgs e)
         {
-            SuggestedSearch(FromComboBox, e);
+            autocomplete.SuggestedSearch(FromComboBox, e);
         }
 
         private void ToSearchConnectionKeyUp(object sender, KeyEventArgs e)
         {
-            SuggestedSearch(ToComboBox, e);
+            autocomplete.SuggestedSearch(ToComboBox, e);
 
         }
 
         private void StationSearchMapKeyUp(object sender, KeyEventArgs e)
         {
-            SuggestedSearch(StationMapComboBox, e);
+            autocomplete.SuggestedSearch(StationMapComboBox, e);
         }
 
         private void MailSendenButtonClick(object sender, EventArgs e)
@@ -203,8 +163,21 @@ namespace MyTransportApp
                 {
                     //Stationsauswahl an Funktione weitergeben um die Koordinaten derer zu ermitteln
                     var Coords = GetStationGPSCoodrinates(StationMapComboBox.Text);
-                    //erhaltene Koordinaten an Funktion MoveMap weitergeben damit Station auf der Karte gefunden und angezeigt wird.
-                    MoveMapToGPSCoordinates(Coords);
+                    if (Coords != "ERROR")
+                    {
+                        if (Coords != "/")
+                        {
+                            //erhaltene Koordinaten an Funktion MoveMap weitergeben damit Station auf der Karte gefunden und angezeigt wird.
+                            MoveMapToGPSCoordinates(Coords);
+                        }
+                        else 
+                        {
+                            MessageBox.Show("Koordinaten der Station nicht gefunden.");
+                        }
+                    }
+                    else {
+                        MessageBox.Show("Fehler: Bitte überprüfen Sie Ihre Eingabe.");
+                    }
                 }
                 else
                 {
