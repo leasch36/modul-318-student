@@ -116,7 +116,7 @@ namespace MyTransportApp
                 {
                     try
                     {
-                        string eingabee = combobox.Text;
+                        string input = combobox.Text;
                         //DropDown Items leeren
                         combobox.Items.Clear();
                         //Curser ans Ende setzen
@@ -135,7 +135,7 @@ namespace MyTransportApp
                         }
                         //DropDown geht auf bzw. wird angezeigt
                         combobox.DroppedDown = true;
-                        combobox.Text = eingabee;
+                        combobox.Text = input;
                         combobox.SelectionStart = combobox.Text.Length + 1;
                     }
                     catch
